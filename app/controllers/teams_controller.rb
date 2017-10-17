@@ -1,74 +1,51 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
-
-  # GET /teams
-  # GET /teams.json
   def index
     @teams = Team.all
   end
 
-  # GET /teams/1
-  # GET /teams/1.json
-  def show
-  end
-
-  # GET /teams/new
   def new
     @team = Team.new
   end
 
-  # GET /teams/1/edit
-  def edit
-  end
-
-  # POST /teams
-  # POST /teams.json
   def create
-    @team = Team.new(team_params)
-
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :new }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    @coach = current_coach
+    @team = @coach.teams.build(team_params)
+    if @team.save
+      redirect_to team_path(@team), notice: 'Team Successfully Created'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /teams/1
-  # PATCH/PUT /teams/1.json
+  def edit
+    @team = Team.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team }
-      else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    @team = Team.find(params[:id])
+
+    if @team.update_attributes(team_params)
+      redirect_to team_path, :notice => "Your Team has been Updated. "
+    else 
+      render :edit
     end
   end
 
-  # DELETE /teams/1
-  # DELETE /teams/1.json
+  def show
+    @team = Team.find(params[:id])
+  end
+
   def destroy
-    @team.destroy
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
+    @team = Team.find(params[:id])
+    if @team.destroy
+      redirect_to teams_path, notice: 'Team Successfully Deleted'
+    else
+      redirect_to team_path(@team), notice: "Couldn't delete, Some problem occured, Try Again"
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_team
-      @team = Team.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:team_name, :team_status, :team_logo, :coach_id)
+      params.require(:team).permit(:team_name, :team_logo, :coach_id, :team_status, players_attributes: [:id, :team_id, :first_name, :last_name, :phone, :email, :dob, :photo, :player_status, :_destroy])
     end
 end

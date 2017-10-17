@@ -1,24 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Team name:</strong>
-  <%= @team.team_name %>
-</p>
-
-<p>
-  <strong>Team status:</strong>
-  <%= @team.team_status %>
-</p>
-
-<p>
-  <strong>Team logo:</strong>
-  <%= @team.team_logo %>
-</p>
-
-<p>
-  <strong>Coach:</strong>
-  <%= @team.coach %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<%= image_tag @team.team_logo.url(:medium), class: 'img-thumbnail' %>
+		</div>
+		<div class="col-md-8" style="line-height: 2em">
+			<strong> Name: </strong> <%= @team.team_name %> <br>
+			<strong> Status: </strong> <%= @team.team_status %> <br>
+			<strong> Coach: </strong> <%= @team.coach.first_name.capitalize + " " + @team.coach.last_name.capitalize %> <br>
+			<%= image_tag @team.coach.image.url(:medium), class: 'img-rounded show-page-coach-img' %> <br>
+			<strong> created_at: </strong> <%= @team.created_at %> <br>
+			<%= link_to 'Edit', edit_team_path(@team) %> | <%= link_to 'Delete', @team, method: :delete, data: { confirm: "Are you sure?" } %>
+		</div>
+	</div>
+</div>

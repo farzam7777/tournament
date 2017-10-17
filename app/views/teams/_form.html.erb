@@ -1,37 +1,16 @@
-<%= form_with(model: team, local: true) do |form| %>
-  <% if team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-      <ul>
-      <% team.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for @team do |f| %>
+  <%= f.text_field :team_name %>
+  <%= f.text_field :team_status %>
+	<%= f.file_field :team_logo, :as => :file, :hint => f.object.team_logo.present? \
+      ? image_tag(f.object.team_logo.url(:medium))
+      : content_tag(:span, "no image yet") %>
+  
+  <%= f.fields_for :players do |p| %>
+  	<%= p.text_field :first_name %>
+  	<%= p.text_field :last_name %>
+  	
+    <%= p.link_to_remove "Remove this Player" %>
   <% end %>
-
-  <div class="field">
-    <%= form.label :team_name %>
-    <%= form.text_field :team_name, id: :team_team_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :team_status %>
-    <%= form.text_field :team_status, id: :team_team_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :team_logo %>
-    <%= form.text_field :team_logo, id: :team_team_logo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :coach_id %>
-    <%= form.text_field :coach_id, id: :team_coach_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <p><%= f.link_to_add "Add a Player", :players %></p>
+  <%= f.button :submit %>
 <% end %>

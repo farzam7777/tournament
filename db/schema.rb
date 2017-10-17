@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017082729) do
+ActiveRecord::Schema.define(version: 20171017103835) do
 
   create_table "coaches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_name"
@@ -37,18 +37,34 @@ ActiveRecord::Schema.define(version: 20171017082729) do
     t.index ["reset_password_token"], name: "index_coaches_on_reset_password_token", unique: true
   end
 
+  create_table "players", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
+    t.date "dob"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string "payer_status"
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "team_name"
-    t.string "team_status"
     t.string "team_logo_file_name"
     t.string "team_logo_content_type"
     t.integer "team_logo_file_size"
     t.datetime "team_logo_updated_at"
-    t.bigint "coach_id"
+    t.string "team_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coach_id"], name: "index_teams_on_coach_id"
+    t.integer "coach_id"
   end
 
-  add_foreign_key "teams", "coaches"
+  add_foreign_key "players", "teams"
 end

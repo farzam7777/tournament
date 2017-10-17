@@ -18,6 +18,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'high_voltage', '~> 3.0.0'
 gem "paperclip", "~> 5.0.0"
+gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
+gem "nested_form"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

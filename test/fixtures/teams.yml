@@ -2,12 +2,10 @@
 
 one:
   team_name: MyString
-  team_status: MyString
   team_logo: 
-  coach: one
+  team_status: MyString
 
 two:
   team_name: MyString
-  team_status: MyString
   team_logo: 
-  coach: two
+  team_status: MyString

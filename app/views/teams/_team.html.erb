@@ -1,0 +1,13 @@
+<a href="<%= team_path(team) %>">
+	<div class="row">
+		<div class="col-md-2">
+			<%= image_tag team.team_logo.url(:medium), class: 'img-thumbnail index-page-team-logo-width-height' %>
+		</div>		
+		<div class="col-md-5">
+			<div>
+				 <p style="margin-top: 10%;" class="pull-left"> <Strong> <%= team.team_name %> </Strong> </p>
+			</div>
+		</div>
+	</div>
+</a>
+<hr>

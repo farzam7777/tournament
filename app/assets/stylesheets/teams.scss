@@ -1,3 +1,28 @@
 // Place all the styles related to the teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.show-page-coach-img{
+	width: 100px;
+	height: 100px;
+}
+
+.index-page-team-logo-width-height{
+	width: 150px !important; 
+	height: 150px !important;
+}
+
+.new-team-button{
+	color: white;
+  background: darkblue;
+  padding: 12px;
+  border-radius: 2px;
+}
+
+.new-team-button:hover {
+	color: black;
+  background: lightblue;
+  padding: 12px;
+  border-radius: 2px;
+  text-decoration: none;
+}
