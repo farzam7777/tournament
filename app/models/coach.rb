@@ -14,4 +14,8 @@ class Coach < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   has_many :teams
+
+  def to_s
+    first_name + " " + last_name
+  end
 end

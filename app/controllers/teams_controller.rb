@@ -1,15 +1,20 @@
 class TeamsController < ApplicationController
   def index
-    @teams = Team.all
+    @teams = Team.all.page(params[:page]).per(2)
   end
 
   def new
-    @team = Team.new
+    if coach_signed_in?
+      @team = Team.new
+    else
+      redirect_to teams_path, :notice => "You must be Logged in to create your Team"
+    end
   end
 
   def create
     @coach = current_coach
     @team = @coach.teams.build(team_params)
+
     if @team.save
       redirect_to team_path(@team), notice: 'Team Successfully Created'
     else
@@ -19,6 +24,9 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
+    if !(@team.coach == current_coach)
+      redirect_to team_path(@team), notice: 'You are not authorized to access this page'
+    end
   end
 
   def update
@@ -37,6 +45,11 @@ class TeamsController < ApplicationController
 
   def destroy
     @team = Team.find(params[:id])
+
+    if !(@team.coach == current_coach)
+      redirect_to team_path(@team), notice: 'You are not authorized to access this page'
+    end
+
     if @team.destroy
       redirect_to teams_path, notice: 'Team Successfully Deleted'
     else
@@ -46,6 +59,6 @@ class TeamsController < ApplicationController
 
   private
     def team_params
-      params.require(:team).permit(:team_name, :team_logo, :coach_id, :team_status, players_attributes: [:id, :team_id, :first_name, :last_name, :phone, :email, :dob, :photo, :player_status, :_destroy])
+      params.require(:team).permit(:team_name, :team_logo, :coach_id, :team_status, playings_attributes: [:id, :team_id, :player_id, :_destroy])
     end
 end

@@ -1,16 +1,16 @@
-<%= form_for @team do |f| %>
-  <%= f.text_field :team_name %>
-  <%= f.text_field :team_status %>
-	<%= f.file_field :team_logo, :as => :file, :hint => f.object.team_logo.present? \
-      ? image_tag(f.object.team_logo.url(:medium))
-      : content_tag(:span, "no image yet") %>
-  
-  <%= f.fields_for :players do |p| %>
-  	<%= p.text_field :first_name %>
-  	<%= p.text_field :last_name %>
-  	
-    <%= p.link_to_remove "Remove this Player" %>
-  <% end %>
-  <p><%= f.link_to_add "Add a Player", :players %></p>
-  <%= f.button :submit %>
+<% if coach_signed_in? %>
+	<%= simple_nested_form_for @team, defaults: { input_html: { class: 'default_class' } } do |f| %>
+	  <%= f.input :team_name %>
+	  <%= f.input :team_status %>
+		<%= f.input :team_logo, :as => :file, :hint => f.object.team_logo.present? \
+	      ? image_tag(f.object.team_logo.url(:medium))
+	      : content_tag(:span, "no image yet") %>
+	  
+	  <%= f.simple_fields_for :playings do |p| %>
+	  	<%= p.input :player_id, as: :select, collection: Player.all.map { |r| [r.first_name, r.id] }, prompt: 'Select Player' %>
+	    <%= p.link_to_remove "Remove this Player" %>
+	  <% end %>
+	  <p><%= f.link_to_add "Add a player", :playings %></p>
+	  <%= f.button :submit %>
+	<% end %>
 <% end %>

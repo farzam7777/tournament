@@ -1,15 +1,40 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-4">
-			<%= image_tag @team.team_logo.url(:medium), class: 'img-thumbnail' %>
-		</div>
-		<div class="col-md-8" style="line-height: 2em">
-			<strong> Name: </strong> <%= @team.team_name %> <br>
-			<strong> Status: </strong> <%= @team.team_status %> <br>
-			<strong> Coach: </strong> <%= @team.coach.first_name.capitalize + " " + @team.coach.last_name.capitalize %> <br>
-			<%= image_tag @team.coach.image.url(:medium), class: 'img-rounded show-page-coach-img' %> <br>
-			<strong> created_at: </strong> <%= @team.created_at %> <br>
-			<%= link_to 'Edit', edit_team_path(@team) %> | <%= link_to 'Delete', @team, method: :delete, data: { confirm: "Are you sure?" } %>
-		</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+	  Team Details
+	  <p class="pull-right">
+	  	<% if @team.coach == current_coach %>
+				<%= link_to '', edit_team_path(@team), class: 'fa fa-pencil', style: 'color: white; margin-left: -40%; margin-right: 40%' %>
+			<% end %>
+
+			<% if @team.coach == current_coach %>
+				<%= link_to '', @team, method: :delete, data: { confirm: "Are you sure?" }, class: 'fa fa-trash', style: 'color: white;' %>
+			<% end %>
+	  </p>
 	</div>
+  <div class="panel-body">
+  	<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<%= image_tag @team.team_logo.url(:medium), class: 'img-thumbnail' %>
+				</div>
+				<div class="col-md-4" style="line-height: 2em">
+					<h3> Team Details </h3>
+					<strong> Name: </strong> <%= @team.team_name %> <br>
+					<strong> Status: </strong> <%= @team.team_status %> <br>
+					<strong> Coach: </strong> <%= @team.coach.first_name.capitalize + " " + @team.coach.last_name.capitalize %> <br>
+					<%= image_tag @team.coach.image.url(:medium), class: 'img-rounded show-page-coach-img' %> <br>
+					<strong> created_at: </strong> <%= @team.created_at.to_date %> <br>
+				
+				</div>
+				<div class="col-md-4">
+					<h3> Players List </h3>
+					<% @team.players.each do |p| %>
+						<ul>
+							<%= render 'player', p: p %>
+						</ul>
+					<% end %>
+				</div>
+			</div>
+		</div>
+  </div>
 </div>

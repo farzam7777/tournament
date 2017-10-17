@@ -22,6 +22,12 @@ gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem "nested_form"
+gem 'activeadmin', github: 'activeadmin'
+gem 'active_skin'
+gem 'active_admin_theme'
+gem 'cancancan', '~> 2.0'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -34,6 +40,11 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+	  Player Details
+	</div>
+  <div class="panel-body">
+  	<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<%= image_tag @player.photo.url(:medium), class: 'img-thumbnail' %>
+				</div>
+				<div class="col-md-4" style="line-height: 2em">
+					<h3> Details </h3>
+					<strong> Name: </strong> <%= @player.first_name + " " + @player.last_name %> <br>
+					<strong> Status: </strong> <%= @player.player_status %> <br>
+					<strong> created_at: </strong> <%= @player.created_at.to_date %> <br>
+				
+				</div>
+				<div class="col-md-4">
+					<h3> Teams List </h3>
+					<% @player.teams.each do |t| %>
+						<ul>
+							<%= render 'team', t: t %>
+						</ul>
+					<% end %>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
