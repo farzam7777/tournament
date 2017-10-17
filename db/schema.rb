@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017075552) do
+ActiveRecord::Schema.define(version: 20171017082729) do
 
   create_table "coaches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_name"
@@ -37,4 +37,18 @@ ActiveRecord::Schema.define(version: 20171017075552) do
     t.index ["reset_password_token"], name: "index_coaches_on_reset_password_token", unique: true
   end
 
+  create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "team_name"
+    t.string "team_status"
+    t.string "team_logo_file_name"
+    t.string "team_logo_content_type"
+    t.integer "team_logo_file_size"
+    t.datetime "team_logo_updated_at"
+    t.bigint "coach_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coach_id"], name: "index_teams_on_coach_id"
+  end
+
+  add_foreign_key "teams", "coaches"
 end
