@@ -12,6 +12,9 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="<%= teams_path %>">Teams</a></li>
+        <% if coach_signed_in? %>
+          <li><a href="<%= my_team_teams_path %>">My Teams</a></li>
+        <% end %>
       </ul>
       <% if !coach_signed_in? %>
         <ul class="nav navbar-nav navbar-right">

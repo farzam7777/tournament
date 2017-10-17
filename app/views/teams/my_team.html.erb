@@ -2,13 +2,8 @@
 
 	<div class="row">
 		<div class="col-md-10">
-			<h2> All Teams </h2>
-
+			<h2> My Teams </h2>
 			<%= render @teams %>
-
-			<div>
-				<%= paginate @teams, theme: 'twitter-bootstrap-3' %>
-			</div>
 		</div>
 		<div class="col-md-2" style="margin-top: 3%;">
 			<%= link_to 'Create new Team', new_team_path, class: 'new-team-button' %>

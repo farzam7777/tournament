@@ -5,11 +5,21 @@
 		<%= f.input :team_logo, :as => :file, :hint => f.object.team_logo.present? \
 	      ? image_tag(f.object.team_logo.url(:medium))
 	      : content_tag(:span, "no image yet") %>
-	  
 	  <%= f.simple_fields_for :playings do |p| %>
-	  	<%= p.input :player_id, as: :select, collection: Player.all.map { |r| [r.first_name, r.id] }, prompt: 'Select Player' %>
-	    <%= p.link_to_remove "Remove this Player" %>
-	  <% end %>
+	  <div class="panel panel-primary" style="width: 40%;">
+		  <div class="panel-heading">
+		  	Player
+		  	<p class="pull-right"> <%= p.link_to_remove "Remove this Player", style: 'color: white' %> </p>
+		  </div>
+		  <div class="panel-body">
+		  	<div class="container">
+					<div class="row">
+					  	<%= p.input :player_id, as: :select, collection: Player.all.map { |r| [r.first_name, r.id] }, prompt: 'Select Player', input_html: { style: 'width: 30%;border-color: black' } %>
+					</div>
+				</div>
+		  </div>
+		</div>
+		<% end %>
 	  <p><%= f.link_to_add "Add a player", :playings %></p>
 	  <%= f.button :submit %>
 	<% end %>

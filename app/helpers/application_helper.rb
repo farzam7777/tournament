@@ -1,13 +1,18 @@
 module ApplicationHelper
-	def current_auth_resource
-    if coach_signed_in?
-      current_coach
-    else
-      current_user
-    end
-  end
-
-  def current_ability
-      @current_ability or @current_ability = Ability.new(current_auth_resource)
+  def bootstrap_class_for(flash_type)
+   case flash_type.to_sym
+     when :success
+       "alert-success"
+     when :error
+       "alert-danger"
+     when :alert
+       "alert-danger"
+     when :notice
+       "alert-success"
+     when :warning
+       "alert-warning"
+     else
+       flash_type.to_s
+   end
   end
 end
