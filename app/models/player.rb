@@ -6,7 +6,7 @@ class Player < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, :numericality => true, :length => { :minimum => 10, :maximum => 15 }
   validates :email, presence: true
   validates :dob, presence: true
   validates :player_status, presence: true
