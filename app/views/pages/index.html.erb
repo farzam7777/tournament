@@ -1,1 +1,6 @@
-High voltage page path to index file.
+<% if !coach_signed_in? %>
+	<%= link_to 'Login', new_coach_session_path %>
+	<%= link_to 'Sign up', new_coach_registration_path %>
+<% else %>
+	<%= link_to 'Logout', destroy_coach_session_path, method: :delete %>
+<% end %>
