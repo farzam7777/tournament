@@ -6,7 +6,7 @@ class Coach < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :phone, presence: true
+  validates :phone, presence: true, :numericality => true, :length => { :minimum => 10, :maximum => 15 }
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "200x200>" }, 
   default_url: ActionController::Base.helpers.asset_path("missing.jpg")
