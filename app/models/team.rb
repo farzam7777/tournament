@@ -7,6 +7,7 @@ class Team < ApplicationRecord
   belongs_to :coach
   has_many 	 :playings, dependent: :destroy
   has_many   :players, through: :playings
+  belongs_to :sport
 
   accepts_nested_attributes_for :playings, :allow_destroy => true
 
