@@ -1,0 +1,12 @@
+<%= simple_form_for @player, defaults: { input_html: { class: 'form-control' } } do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+	<%= f.input :photo, :as => :file, :hint => f.object.photo.present? \
+      ? image_tag(f.object.photo.url(:medium))
+      : content_tag(:span, "no Photo yet") %>
+  <%= f.input :player_status %>
+  <%= f.input :phone %>
+  <%= f.input :dob %>
+  <%= f.button :submit %>
+<% end %>

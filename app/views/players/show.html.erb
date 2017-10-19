@@ -10,6 +10,7 @@
 				</div>
 				<div class="col-md-4" style="line-height: 2em">
 					<h3> Details </h3>
+					<strong> Coach: </strong> <%= @player.coach.first_name + " " + @player.coach.last_name %> <br>
 					<strong> Name: </strong> <%= @player.first_name + " " + @player.last_name %> <br>
 					<strong> Status: </strong> <%= @player.player_status %> <br>
 					<strong> created_at: </strong> <%= @player.created_at.to_date %> <br>

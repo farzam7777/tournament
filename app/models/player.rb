@@ -11,10 +11,15 @@ class Player < ApplicationRecord
   validates :dob, presence: true
   validates :player_status, presence: true
 
-  has_many :playings
-  has_many :teams, through: :playings
+  has_many   :playings
+  has_many   :teams, through: :playings
+  belongs_to :coach 
 
   def to_s
+    first_name + " " + last_name
+  end
+
+  def full_name
     first_name + " " + last_name
   end
 end

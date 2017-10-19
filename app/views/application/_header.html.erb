@@ -14,6 +14,8 @@
         <li><a href="<%= teams_path %>">Teams</a></li>
         <% if coach_signed_in? %>
           <li><a href="<%= my_team_teams_path %>">My Teams</a></li>
+          <li><a href="<%= new_team_path %>">Create Team</a></li>
+          <li><a href="<%= new_player_path %>">Create Player</a></li>
         <% end %>
       </ul>
       <% if !coach_signed_in? %>
