@@ -1,6 +1,13 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
 	  Player Details
+	  
+	  <p class="pull-right">
+			<%= link_to '', edit_player_path(@player), class: 'fa fa-pencil', style: 'color: white; margin-left: -40%; margin-right: 40%' %>
+
+			<%= link_to '', @player, method: :delete, data: { confirm: "Are you sure?" }, class: 'fa fa-trash', style: 'color: white;' %>
+	  </p>
+
 	</div>
   <div class="panel-body">
   	<div class="container">
@@ -10,8 +17,12 @@
 				</div>
 				<div class="col-md-4" style="line-height: 2em">
 					<h3> Details </h3>
-					<strong> Coach: </strong> <%= @player.coach.first_name + " " + @player.coach.last_name %> <br>
-					<strong> Name: </strong> <%= @player.first_name + " " + @player.last_name %> <br>
+
+					<span style="text-decoration: underline;"> <strong> Coach: </strong> <%= @player.coach.first_name + " " + @player.coach.last_name %> <br> </span>
+					<strong> Name: </strong> <%= @player.full_name %> <br>
+					<strong> Email: </strong> <%= @player.email %> <br>
+					<strong> Phone: </strong> <%= @player.phone %> <br>
+					<strong> DOB: </strong> <%= @player.dob.to_date %> <br>
 					<strong> Status: </strong> <%= @player.player_status %> <br>
 					<strong> created_at: </strong> <%= @player.created_at.to_date %> <br>
 				

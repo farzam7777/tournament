@@ -20,6 +20,7 @@ ActiveAdmin.register Player do
 
   index do
     selectable_column
+    column :id
     column :first_name
     column :last_name
     column :phone
@@ -32,6 +33,7 @@ ActiveAdmin.register Player do
 
   show do
     attributes_table do
+      row :id
       row :coach
       row :first_name
       row :last_name

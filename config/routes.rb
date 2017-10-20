@@ -11,5 +11,6 @@ Rails.application.routes.draw do
       get 'my_team'
     end
   end
+
   resources :players
 end

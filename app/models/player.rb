@@ -10,6 +10,8 @@ class Player < ApplicationRecord
   validates :email, presence: true
   validates :dob, presence: true
   validates :player_status, presence: true
+  validates :first_name, uniqueness: { scope: [:coach_id ,:last_name, :dob] } 
+  validates_uniqueness_of :email
 
   has_many   :playings, dependent: :destroy
   has_many   :teams, through: :playings

@@ -22,7 +22,7 @@
 					<strong> Sport: </strong> <%= @team.sport.name %> <br>
 					<strong> Name: </strong> <%= @team.team_name %> <br>
 					<strong> Status: </strong> <%= @team.team_status %> <br>
-					<strong> Coach: </strong> <%= @team.coach.first_name.capitalize + " " + @team.coach.last_name.capitalize %> <br>
+					<span style="text-decoration: underline;"> <strong> Coach: </strong> <%= @team.coach.first_name.capitalize + " " + @team.coach.last_name.capitalize %> <br> </span>
 					<%= image_tag @team.coach.image.url(:medium), class: 'img-rounded show-page-coach-img' %> <br>
 					<strong> created_at: </strong> <%= @team.created_at.to_date %> <br>
 				

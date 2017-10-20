@@ -1,2 +1,18 @@
-<h1>Players#index</h1>
-<p>Find me in app/views/players/index.html.erb</p>
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-10">
+			<h2> My Players </h2>
+
+			<%= render @players %>
+
+			<div>
+				<%= paginate @players, theme: 'twitter-bootstrap-3' %>
+			</div>
+		</div>
+		<div class="col-md-2" style="margin-top: 3%;">
+			<%= link_to 'Create new Player', new_player_path, class: 'new-team-button' %>
+		</div>
+	</div>
+
+</div>
