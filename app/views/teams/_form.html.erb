@@ -16,12 +16,38 @@
 		  	<div class="container">
 					<div class="row">
 					  	<%= p.input :player_id, as: :select, collection: current_coach.players.all.map { |r| [r.full_name, r.id] }, prompt: 'Select Player', input_html: { style: 'width: 30%;border-color: black' } %>
+					  	<%= p.input :sport_id, as: :hidden, input_html: { value: "", class: 'playing_sport_id'} %>
 					</div>
 				</div>
 		  </div>
 		</div>
 		<% end %>
 	  <p><%= f.link_to_add "Add a player", :playings %></p>
-	  <%= f.button :submit %>
+	  <%= f.button :submit, id: 'submit' %>
 	<% end %>
 <% end %>
+
+<script type="text/javascript">
+	$('#team_sport_id').on('change', function() {
+		sport_id = this.value
+	  $('.playing_sport_id').each(function(){
+		  $(this).val(sport_id);
+		});
+	})
+
+	$(document).ready(function() {
+    var sport_id = $("#team_sport_id").val()
+    $('.playing_sport_id').each(function(){
+		  $(this).val(sport_id);
+		});
+	});
+
+	$(document).ready(function() {
+    $('.simple_form').submit(function() {
+		  var sport_id = $("#team_sport_id").val()
+	    $('.playing_sport_id').each(function(){
+			  $(this).val(sport_id);
+			});
+		});
+	});
+</script>

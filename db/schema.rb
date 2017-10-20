@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019103734) do
+ActiveRecord::Schema.define(version: 20171019125335) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20171019103734) do
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sport_id"
     t.index ["team_id", "player_id"], name: "index_playings_on_team_id_and_player_id", unique: true
   end
 

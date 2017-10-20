@@ -11,7 +11,7 @@ class Player < ApplicationRecord
   validates :dob, presence: true
   validates :player_status, presence: true
 
-  has_many   :playings
+  has_many   :playings, dependent: :destroy
   has_many   :teams, through: :playings
   belongs_to :coach 
 
