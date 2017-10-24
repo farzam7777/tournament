@@ -1,8 +1,16 @@
 <% if coach_signed_in? %>
 	<%= simple_nested_form_for @team, defaults: { input_html: { class: 'form-control' } } do |f| %>
+		<% if @team.errors.any? %>
+	    <% @team.errors.messages.each do |attr, msg| %>
+        <% msg.each do |val| %>
+        	<li class="error"><%= val %></li>
+        <% end %>
+      <% end %>
+	  <% end %>
 		<%= f.association :sport %>
 	  <%= f.input :team_name %>
 	  <%= f.input :team_status %>
+	  <%= f.input :total_players, as: :hidden, input_html: { value: "", class: 'total_players' } %>
 		<%= f.input :team_logo, :as => :file, :hint => f.object.team_logo.present? \
 	      ? image_tag(f.object.team_logo.url(:medium))
 	      : content_tag(:span, "no image yet") %>
@@ -33,6 +41,18 @@
 	  $('.playing_sport_id').each(function(){
 		  $(this).val(sport_id);
 		});
+	});
+
+	$(document).on('click', '.remove_nested_fields', function() {
+		var count = $('.total_players').val()
+		count = count - 1
+		$('.total_players').val(count)
+	})
+
+	$('.add_nested_fields').on('click', function() {
+		var count = $('.total_players').val()
+		count = parseInt(count) + 1
+		$('.total_players').val(count)
 	})
 
 	$(document).ready(function() {
@@ -40,6 +60,8 @@
     $('.playing_sport_id').each(function(){
 		  $(this).val(sport_id);
 		});
+		var total_players = $('.panel').length
+		$('.total_players').val(total_players)
 	});
 
 	$(document).ready(function() {

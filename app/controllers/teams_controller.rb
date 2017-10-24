@@ -15,10 +15,16 @@ class TeamsController < ApplicationController
     @coach = current_coach
     @team = @coach.teams.build(team_params)
 
-    if @team.save
-      redirect_to team_path(@team), notice: 'Team Successfully Created'
+    total_players = params[:team][:total_players]
+    
+    if total_players.to_i <= 10
+      if @team.save
+        redirect_to team_path(@team), notice: 'Team Successfully Created'
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to new_team_path, alert: "You have exceeded your Players Capacity for this Team. "
     end
 
     rescue ActiveRecord::RecordNotUnique 
@@ -36,10 +42,17 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
 
-    if @team.update_attributes(team_params)
-      redirect_to team_path, :notice => "Your Team has been Updated. "
-    else 
-      render :edit
+    total_players = params[:team][:total_players]
+    players_capacity = @team.players_capacity
+
+    if total_players.to_i <= players_capacity.to_i
+      if @team.update_attributes(team_params)
+        redirect_to team_path, :notice => "Your Team has been Updated. "
+      else 
+        render :edit
+      end
+    else
+      redirect_to edit_team_path(@team), alert: "You have exceeded your Players Capacity for this Team. "
     end
 
     rescue ActiveRecord::RecordNotUnique 

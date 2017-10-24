@@ -1,6 +1,6 @@
 ActiveAdmin.register Player do
 
-  permit_params :first_name, :last_name, :phone, :email, :dob, :photo, :player_status, :coach_id
+  permit_params :first_name, :last_name, :phone, :email, :dob, :photo, :player_status, :coach_id, :playing_option
 
   form do |f|
     f.inputs "Player Details" do
@@ -14,6 +14,7 @@ ActiveAdmin.register Player do
       ? image_tag(f.object.photo.url(:thumb))
       : content_tag(:span, "no image yet") 
       f.input :player_status
+      f.input :playing_option, as: :select, collection: [ 'one', 'many' ], include_blank: 'Choose Option'
     end
     f.button :Submit
   end
@@ -21,13 +22,14 @@ ActiveAdmin.register Player do
   index do
     selectable_column
     column :id
+    column :coach
     column :first_name
     column :last_name
+    column :playing_option
     column :phone
     column :email
     column :dob
     column :player_status
-    column :coach
     actions
   end
 
@@ -43,6 +45,7 @@ ActiveAdmin.register Player do
       row :photo do
         image_tag player.photo.url(:medium)
       end
+      row :playing_option
       row :player_status
   	end  
     active_admin_comments
@@ -55,4 +58,5 @@ ActiveAdmin.register Player do
   filter :email
   filter :dob
   filter :player_status
+  filter :playing_option, as: :select, collection: [ 'one', 'many' ]
 end
