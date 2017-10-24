@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  logo: 
+  name: MyString
+  description: MyText
+  tag_line: MyString
+  address: MyString
+  date: 2017-10-25
+  start_time: 2017-10-25 00:18:24
+  phone: MyString
+  email: MyString
+  url: MyString
+  cutoff_date: 2017-10-25
+  number_allowed: 1
+  tournament_fee: 1
+  tournament_status: MyString
+  sport_id: 1
+
+two:
+  logo: 
+  name: MyString
+  description: MyText
+  tag_line: MyString
+  address: MyString
+  date: 2017-10-25
+  start_time: 2017-10-25 00:18:24
+  phone: MyString
+  email: MyString
+  url: MyString
+  cutoff_date: 2017-10-25
+  number_allowed: 1
+  tournament_fee: 1
+  tournament_status: MyString
+  sport_id: 1

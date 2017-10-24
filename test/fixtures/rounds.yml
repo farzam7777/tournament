@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  championship_id: 1
+  scheduled_date: 2017-10-25 00:22:59
+  actual_date: 2017-10-25 00:22:59
+  round_status: MyString
+
+two:
+  championship_id: 1
+  scheduled_date: 2017-10-25 00:22:59
+  actual_date: 2017-10-25 00:22:59
+  round_status: MyString
