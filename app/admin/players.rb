@@ -22,7 +22,6 @@ ActiveAdmin.register Player do
   index do
     selectable_column
     column :id
-    column :coach
     column :first_name
     column :last_name
     column :playing_option
@@ -30,6 +29,7 @@ ActiveAdmin.register Player do
     column :email
     column :dob
     column :player_status
+    column :coach
     actions
   end
 
