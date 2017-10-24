@@ -45,7 +45,7 @@
 
 	$(document).on('click', '.remove_nested_fields', function() {
 		var count = $('.total_players').val()
-		count = count - 1
+		count = parseInt(count) - 1
 		$('.total_players').val(count)
 	})
 
