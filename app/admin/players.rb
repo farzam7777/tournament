@@ -14,7 +14,7 @@ ActiveAdmin.register Player do
       ? image_tag(f.object.photo.url(:thumb))
       : content_tag(:span, "no image yet") 
       f.input :player_status
-      f.input :playing_option, as: :select, collection: [ 'one', 'many' ], include_blank: 'Choose Option'
+      f.input :playing_option, as: :select, collection: [ 'one', 'many' ]
     end
     f.button :Submit
   end
